@@ -112,13 +112,10 @@ def play_round(agents, num_matches):
 
     print("\nPlaying Matches:")
     print("----------")
-
     for idx, agent_2 in enumerate(agents[:-1]):
-
         counts = {agent_1.player: 0., agent_2.player: 0.}
         names = [agent_1.name, agent_2.name]
         print("  Match {}: {!s:^11} vs {!s:^11}".format(idx + 1, *names), end=' ')
-
         # Each player takes a turn going first
         for p1, p2 in itertools.permutations((agent_1.player, agent_2.player)):
             for _ in range(num_matches):
@@ -128,10 +125,8 @@ def play_round(agents, num_matches):
                 total += score_1 + score_2
 
         wins += counts[agent_1.player]
-
         print("\tResult: {} to {}".format(int(counts[agent_1.player]),
                                           int(counts[agent_2.player])))
-
     return 100. * wins / total
 
 
@@ -162,7 +157,8 @@ def main():
     # faster or slower computers.
     test_agents = [Agent(CustomPlayer(score_fn=improved_score, **CUSTOM_ARGS), "ID_Improved"),
                    Agent(CustomPlayer(score_fn=custom_score, **CUSTOM_ARGS), "Student")]
-
+    
+    
     print(DESCRIPTION)
     for agentUT in test_agents:
         print("")
@@ -176,7 +172,6 @@ def main():
         print("\n\nResults:")
         print("----------")
         print("{!s:<15}{:>10.2f}%".format(agentUT.name, win_ratio))
-
 
 if __name__ == "__main__":
     main()
